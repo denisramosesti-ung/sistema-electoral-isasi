@@ -2,10 +2,23 @@
 
 import { supabase } from "../supabaseClient";
 import { normalizeCI } from "../utils/estructuraHelpers";
+import { savePadron, getAllPadron } from "../utils/padronDB";
 
 // ======================= CARGAR ESTRUCTURA COMPLETA =======================
 export const cargarEstructuraCompleta = async () => {
-  const { data: padron } = await supabase.from("padron").select("*");
+  let padron = await getAllPadron();
+
+  // Si no existe en IndexedDB, lo descarga y guarda
+  if (!padron || padron.length === 0) {
+    const { data } = await supabase
+      .from("padron")
+      .select("*")
+      .range(0, 100000);
+
+    padron = data || [];
+    await savePadron(padron);
+  }
+
   const { data: coords } = await supabase.from("coordinadores").select("*");
   const { data: subs } = await supabase.from("subcoordinadores").select("*");
   const { data: votos } = await supabase.from("votantes").select("*");
