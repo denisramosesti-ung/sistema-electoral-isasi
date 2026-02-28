@@ -23,8 +23,13 @@ export const cargarEstructuraCompleta = async () => {
   const { data: subs } = await supabase.from("subcoordinadores").select("*");
   const { data: votos } = await supabase.from("votantes").select("*");
 
-  const mapPadron = (ci) =>
-    padron.find((p) => normalizeCI(p.ci) === normalizeCI(ci));
+  // Crear mapa una sola vez
+const padronMap = new Map(
+  padron.map((p) => [normalizeCI(p.ci), p])
+);
+
+const mapPadron = (ci) =>
+  padronMap.get(normalizeCI(ci));
 
   return {
     coordinadores: (coords || []).map((c) => ({ ...c, ...mapPadron(c.ci) })),
