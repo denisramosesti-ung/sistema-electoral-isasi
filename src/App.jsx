@@ -16,12 +16,6 @@ const SUPERADMINS = [
     nombre: "Denis",
     apellido: "Ramos",
   },
-  {
-    ci: "3641845",
-    pass: "j.gomez",
-    nombre: "José",
-    apellido: "Gomez",
-  },
 ];
 
 const App = () => {
@@ -163,7 +157,7 @@ const App = () => {
               Sistema Electoral
             </h1>
             <p className="text-brand-200 text-sm mt-1">
-              Gestión de Votantes — SL 2026
+              Gestión de Votantes — Fernando de la Mora 2026
             </p>
           </div>
 
