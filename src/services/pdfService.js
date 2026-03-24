@@ -286,7 +286,6 @@ function addSubTable(doc, startY, subs, estructura) {
   local: { cellWidth: 40 },
   confirmado: { cellWidth: 15 },
 },
-    },
     rowPageBreak: "avoid",
     didParseCell: (data) => {
       if (data.column.dataKey === "confirmado" && data.section === "body") {
