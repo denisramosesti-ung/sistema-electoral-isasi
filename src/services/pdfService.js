@@ -203,7 +203,6 @@ function addVoterTable(doc, startY, voters) {
   orden: { cellWidth: 12 },
   local: { cellWidth: 40 },
   confirmado: { cellWidth: 15 },
-},
     },
     alternateRowStyles: { fillColor: COLOR_ALT_ROW },
     rowPageBreak: "avoid",
